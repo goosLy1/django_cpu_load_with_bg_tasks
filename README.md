@@ -38,6 +38,7 @@ python manage.py runserver
 python manage.py process_tasks
 ```
 на линуксе:
+```
 python3 manage.py runserver
 ```
 ```
