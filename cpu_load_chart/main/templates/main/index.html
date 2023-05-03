@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPU load</title>
+</head>
+<body>
+    <div id="container_cpu_load"></div>
+    <div id="container_avg_cpu_load"></div>
+    
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script type="text/javascript">
+           
+            let data = JSON.parse("{{ data|escapejs }}");
+            Highcharts.chart('container_cpu_load', {
+
+                title: {
+                text: 'Величина загрузки процессора',
+                align: 'left'
+                },
+
+                subtitle: {
+                text: 'Величина загрузки процессора с интервалом в 5 секунд',
+                align: 'left'
+                },
+
+                yAxis: {
+                title: {
+                    text: 'Загрузка процессора, %'
+                }
+                },
+
+                xAxis: {
+                    categories: data.added_at,
+                    
+                },
+
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle'
+                },
+
+                series: [{
+                name: 'Изменение моментальной загрузки процессора',
+                data: data.cpu_load                
+                },],
+                });       
+    </script>
+    <script type="text/javascript">
+        Highcharts.chart('container_avg_cpu_load', {
+
+            title: {
+            text: 'Усредненная загрузка процессора',
+            align: 'left'
+            },
+
+            subtitle: {
+            text: 'Cреднее значение за 1 минуту',
+            align: 'left'
+            },
+
+            yAxis: {
+            title: {
+                text: 'Загрузка процессора, %'
+            }
+            },
+
+            xAxis: {
+                accessibility: {
+                    rangeDescription: 'Range: 2010 to 2020'
+            }
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+
+            series: [{
+            name: 'Усредненная загрузка процессора',
+            data: data.avg_cpu_load,
+            color: '#FF0000',
+            }],
+            });       
+    </script>
+</body>
+</html>
