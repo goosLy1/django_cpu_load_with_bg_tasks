@@ -9,7 +9,7 @@ from .models import CPULoad
 # Create your views here.
 def index(request):
    
-    save_data(repeat=5)
+    
 
     filter_value = datetime.today() - timedelta(hours=1)
     print(filter_value)

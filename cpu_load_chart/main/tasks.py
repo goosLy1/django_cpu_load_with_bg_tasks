@@ -9,3 +9,4 @@ def save_data():
         CPULoad.objects.create(load=cpu_load)
         
         
+save_data(repeat=5)
