@@ -7,6 +7,8 @@ from background_task.models import Task
 
 class Command(RunserverCommand):
     def __init__(self, *args, **kwargs):
+        if CPULoad.objects.exists():
+            CPULoad.objects.create(load=0)
         atexit.register(self.exit)
         return super(Command, self).__init__(*args, **kwargs)
 
